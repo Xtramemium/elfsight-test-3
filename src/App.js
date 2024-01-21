@@ -9,8 +9,9 @@ function App() {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: space-around;
         height: 100vh;
+        flex: 1 1 auto;
     `
     return (
         <Wrapper>

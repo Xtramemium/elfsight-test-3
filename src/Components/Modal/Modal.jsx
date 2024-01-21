@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-const ModalWrapper = ({className, children}) => {
+const ModalWrapper = ({className, children, active, setActive}) => {
+
+
 	const Content = styled.div`
 	padding: 20px;
 	border-radius: 15px;
@@ -10,8 +12,8 @@ const ModalWrapper = ({className, children}) => {
 	`
 
 	return (
-		<div className={className}>
-			<Content/>
+		<div className={className} onClick={setActive(false)}>
+			<Content onClick={e => e.stopPropagation()}></Content>
 		</div>
 	)
 }
@@ -26,4 +28,10 @@ export const Modal = styled(ModalWrapper)`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	transform: scale(0);
+	
+	&:active {
+		
+	}
+	
 `
