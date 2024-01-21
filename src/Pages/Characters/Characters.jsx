@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { defaultReq } from '../../Constants';
 import styled from 'styled-components';
+import { NonLoadedImage } from '../../../../../../WebstormProjects/elfsight-test-3/src/Components';
 
 const CharactersWrapper = ({ className }) => {
 	const [characterData, setCharacterData] = useState(null);
@@ -12,15 +13,36 @@ const CharactersWrapper = ({ className }) => {
 				setCharacterData(data)
 			})
 	}, []);
-
+	console.log(characterData);
 	return (
 		<div className={( className )}>
 			{characterData && characterData.results.map((char) => (
 				<div>
 					<div>
-						{char.name}
-						<div>{char.status}</div>
-						<div>{char.gender}</div>
+						<img src={char.image} alt={'https://zipbenzo.ru/image/placeholder.jpg'} />
+					</div>
+					<div>
+						<section>
+							<div>
+								<span>
+								{char.name}
+								</span>
+							</div>
+						</section>
+						<section>
+							<div>
+								<span>
+								{char.status}
+								</span>
+							</div>
+						</section>
+						<section>
+							<div>
+								<span>
+								{char.gender}
+								</span>
+							</div>
+						</section>
 					</div>
 				</div>
 			))}
@@ -29,6 +51,10 @@ const CharactersWrapper = ({ className }) => {
 }
 
 export const Characters = styled(CharactersWrapper)`
-	display: flex;
-	justify-content: center;
+    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 1em;
+    grid-gap: 80px;
 `
