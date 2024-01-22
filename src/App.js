@@ -1,26 +1,30 @@
-import './App.css';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Route, Routes } from 'react-router';
-import { Characters, MainPage } from './Pages';
+import { defaultReq } from './Constants';
+import { CharacterList } from './Pages';
 
-function App() {
+const Container = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+`;
 
-    const Wrapper = styled.div`
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
-        height: 100vh;
-        flex: 1 1 auto;
-    `
+const App = () => {
+    const [characters, setCharacters] = useState([]);
+
+    useEffect(() => {
+        fetch(defaultReq)
+            .then(response => response.json())
+            .then(data => {
+                setCharacters(data.results);
+            });
+    }, []);
+
+
     return (
-        <Wrapper>
-            <Routes>
-                <Route path="/" element={<MainPage />} />
-                <Route path="/Characters" element={<Characters />} />
-            </Routes>
-        </Wrapper>
+        <Container>
+            <CharacterList characters={characters} />
+        </Container>
     );
-}
+};
 
 export default App;
