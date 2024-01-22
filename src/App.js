@@ -1,29 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { defaultReq } from './Constants';
-import { CharacterList } from './Pages';
+import { CharacterList, MainPage } from './Pages';
+import { Route, Routes } from 'react-router';
 
-const Container = styled.div`
-  max-width: 800px;
-  margin: 0 auto;
-`;
 
 const App = () => {
-    const [characters, setCharacters] = useState([]);
-
-    useEffect(() => {
-        fetch(defaultReq)
-            .then(response => response.json())
-            .then(data => {
-                setCharacters(data.results);
-            });
-    }, []);
-
 
     return (
-        <Container>
-            <CharacterList characters={characters} />
-        </Container>
+            <Routes>
+                <Route path={'/'} element={<MainPage/>}></Route>
+                <Route path={'/Characters'} element={<CharacterList/>}></Route>
+            </Routes>
     );
 };
 

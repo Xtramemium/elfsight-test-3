@@ -1,0 +1,1 @@
+export const unloadPicture = 'https://rickandmortyapi.com/api/character/avatar/19.jpeg'

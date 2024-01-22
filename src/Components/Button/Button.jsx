@@ -10,9 +10,11 @@ const ButtonWrapper = ({ children, className, ...props }) => {
 
 export const Button = styled(ButtonWrapper)`
 	display: flex;
+	background-color: black;
 	justify-content: center;
 	align-items: center;
-	font-size: 13px;
-	width: 150px;
-	height: 50px;
+	font-size: 15px;
+	border-radius: 20px;
+	height: 30%;
+	border: none;
 `

@@ -1,11 +1,12 @@
 import styled from 'styled-components';
+import { unloadPicture } from '../../../Constants';
 
 const CardContainer = styled.div`
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 16px;
   cursor: pointer;
-  transition: transform 0.3s;
+  transition: transform 0.3s ease-in-out;
 
   &:hover {
     transform: scale(1.05);
@@ -24,8 +25,8 @@ export const CharacterCard = ({ character }) => {
 	return (
 		<>
 			<CardContainer>
-				<img src={character.image}/>
-				<h3>{character.name}</h3>
+				<img src={character.image} alt={unloadPicture}/>
+				<h3>Имя: {character.name}</h3>
 				<p>Статус: {character.status}</p>
 				<p>Пол: {character.gender}</p>
 				{character.type && <p>Тип: {character.type}</p>}
