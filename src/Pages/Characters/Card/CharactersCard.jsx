@@ -6,17 +6,18 @@ const CardContainer = styled.div`
   border-radius: 8px;
   padding: 16px;
   cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.05);
   transition: transform 0.3s ease-in-out;
 
-  &:hover {
-    transform: scale(1.05);
-  } 
+    &:hover {
+        transform: scale(1.03);
+    }
 
-	img {
+    img {
         max-width: 100%;
         border-radius: 4px;
         margin-bottom: 8px;
-	}
+    }
 `;
 
 
