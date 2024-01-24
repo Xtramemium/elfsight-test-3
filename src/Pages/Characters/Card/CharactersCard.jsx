@@ -20,9 +20,7 @@ const CardContainer = styled.div`
     }
 `;
 
-
 export const CharacterCard = ({ character }) => {
-
 	return (
 		<>
 			<CardContainer>
