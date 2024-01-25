@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Button } from '../../Components';
 const MainPageWrapper = ({ className }) => {
 
 	const WelcomeBlock = styled.div`

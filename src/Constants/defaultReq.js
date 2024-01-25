@@ -1,1 +1,0 @@
-export const defaultReq = "https://rickandmortyapi.com/api/character"

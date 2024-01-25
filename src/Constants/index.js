@@ -1,2 +1,2 @@
-export * from './defaultReq';
 export * from './UnloadPicture'
+export * from './BaseUrl'

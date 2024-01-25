@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const BarWrapper = styled.div`
@@ -15,48 +15,12 @@ const FilterSelect = styled.select`
 `;
 
 export const FilterBar = ({ onFilterChange, characters }) => {
-
-	// const charactersAttributes = characters.map(character => ({
-	// 	status: character.status,
-	// 	type: character.type,
-	// 	species: character.species,
-	// 	gender: character.gender
-	// }))
-
 	const getAttributes = {
-		getCharStatus: () => {
-			const charsAttr = Object.values(characters).map((char) => char.status)
-			const uniqueStatusValues = [...new Set(charsAttr)];
+		getCharType: () => [...new Set(Object.values(characters).map((char) => char.type).filter(Boolean))],
+		getCharSpecies: () => [...new Set(Object.values(characters).map((char) => char.species))],
+		getCharGender: () => [...new Set(Object.values(characters).map((char) => char.gender))],
+	};
 
-			return uniqueStatusValues
-		},
-
-		getCharType: () => {
-			const charsAttr = Object.values(characters).map((char) => char.type)
-			const uniqueStatusValues = [...new Set(charsAttr)];
-
-			return uniqueStatusValues
-		},
-
-		getCharGender: () => {
-			const charsAttr = Object.values(characters).map((char) => char.status)
-			const uniqueStatusValues = [...new Set(charsAttr)];
-
-			return uniqueStatusValues
-		},
-
-		getCharName: () => {
-			const charsAttr = Object.values(characters).map((char) => char.name)
-			const uniqueStatusValues = [...new Set(charsAttr)];
-
-			return uniqueStatusValues
-		}
-
-	}
-
-
-	const charsAttr = Object.values(characters).map((char) => char.status)
-	const uniqueStatusValues = [...new Set(charsAttr)];
 	const handleSelectChange = (filter, e) => {
 		const value = e.target.value;
 		onFilterChange(filter, value);
@@ -66,39 +30,44 @@ export const FilterBar = ({ onFilterChange, characters }) => {
 		<BarWrapper>
 			<label>
 				Name:
-				<input
-					type="text"
-					onChange={(e) => handleSelectChange('name', e)}
-				/>
+				<input type="text" onChange={(e) => handleSelectChange('name', e)} />
 			</label>
+
 			<label>
-				{getAttributes.getCharType().map((charType) => (
-					<option>{charType}</option>
-				))}
+				Type:
+				<FilterSelect onChange={(e) => handleSelectChange('type', e)}>
+					<option value="">All</option>
+					{getAttributes.getCharType().map((charType) => (
+						<option key={charType} value={charType}>
+							{charType}
+						</option>
+					))}
+				</FilterSelect>
 			</label>
 
-			{/*<label>Статус:*/}
-			{/*	<FilterSelect onChange={(e) => handleSelectChange(e)}>*/}
-			{/*		<option>{getAttributes.getCharStatus()}</option>*/}
-			{/*	</FilterSelect>*/}
-			{/*</label>*/}
-			{/*<label>Пол:*/}
-			{/*	<FilterSelect onChange={(e) => handleSelectChange(e)}>*/}
-			{/*		<option>{getAttributes.getCharGender()}</option>*/}
-			{/*	</FilterSelect>*/}
-			{/*</label>*/}
-			{/*<label>Тип:*/}
-			{/*	<FilterSelect onChange={(e) => handleSelectChange(e)}>*/}
-			{/*		<option>{getAttributes.getCharType()}</option>*/}
-			{/*	</FilterSelect>*/}
-			{/*</label>*/}
-			{/*<label>Вид:*/}
-			{/*	<FilterSelect onChange={(e) => handleSelectChange(e)}>*/}
-			{/*		<option>{getAttributes}</option>*/}
-			{/*	</FilterSelect>*/}
-			{/*</label>*/}
+			<label>
+				Species:
+				<FilterSelect onChange={(e) => handleSelectChange('species', e)}>
+					<option value="">All</option>
+					{getAttributes.getCharSpecies().map((charSpecies) => (
+						<option key={charSpecies} value={charSpecies}>
+							{charSpecies}
+						</option>
+					))}
+				</FilterSelect>
+			</label>
 
-
+			<label>
+				Gender:
+				<FilterSelect onChange={(e) => handleSelectChange('gender', e)}>
+					<option value="">All</option>
+					{getAttributes.getCharGender().map((charGender) => (
+						<option key={charGender} value={charGender}>
+							{charGender}
+						</option>
+					))}
+				</FilterSelect>
+			</label>
 		</BarWrapper>
 	);
 };

@@ -20,11 +20,11 @@ const CardContainer = styled.div`
     }
 `;
 
-export const CharacterCard = ({ character }) => {
+export const CharacterCard = ({ character, onCardClick }) => {
 	return (
 		<>
-			<CardContainer>
-				<img src={character.image} alt={unloadPicture}/>
+			<CardContainer onClick={onCardClick}>
+				<img src={character.image} alt={character.name} />
 				<h3>Имя: {character.name}</h3>
 				<p>Статус: {character.status}</p>
 				<p>Пол: {character.gender}</p>
@@ -34,4 +34,5 @@ export const CharacterCard = ({ character }) => {
 		</>
 	);
 };
+
 
